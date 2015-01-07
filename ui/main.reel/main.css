@@ -4,3 +4,7 @@
     padding: .5em;
     text-align: center;
 }
+
+.Task.completed {
+    opacity: 0.2;
+}
