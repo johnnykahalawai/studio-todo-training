@@ -23,6 +23,21 @@
                 "isHidden": true
             }
         },
+        "addTask": {
+            "prototype": "digit/ui/button.reel",
+            "properties": {
+                "element": {"#": "addTask"},
+                "enabled": true,
+                "label": "Add Task"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "useCapture": true,
+                    "listener": {"@": "actionEventListener"}
+                }
+            ]
+        },
         "badge": {
             "prototype": "digit/ui/badge.reel",
             "properties": {
@@ -33,27 +48,15 @@
                 "value": {"<-": "@rangeController.organizedContent.filter{!completed}.length"}
             }
         },
-        "button": {
+        "clearCompleted": {
             "prototype": "digit/ui/button.reel",
             "properties": {
-                "element": {"#": "button"},
-                "enabled": true,
-                "label": "Button"
-            },
-            "listeners": [
-                {
-                    "type": "action",
-                    "useCapture": true,
-                    "listener": {"@": "actionEventListener"}
-                }
-            ]
-        },
-        "button2": {
-            "prototype": "digit/ui/button.reel",
-            "properties": {
-                "element": {"#": "button2"},
+                "element": {"#": "clearCompleted"},
                 "enabled": true,
                 "label": "Clear Completed"
+            },
+            "bindings": {
+                "enabled": {"<-": "@tasksController.content.filter{completed}.length > 0"}
             }
         },
         "list": {
@@ -66,10 +69,10 @@
         "rangeController": {
             "prototype": "montage/core/range-controller"
         },
-        "task1": {
+        "task": {
             "prototype": "ui/task.reel",
             "properties": {
-                "element": {"#": "task1"}
+                "element": {"#": "task"}
             },
             "bindings": {
                 "task": {"<-": "@list:iteration.object"}
@@ -88,11 +91,11 @@
 <body>
     <div data-montage-id="main" data-montage-skin="light" class="Main">
         <h1 data-montage-id="title"></h1>
-        <button data-montage-id="button"></button>
+        <button data-montage-id="addTask"></button>
         <output data-montage-id="badge"></output>
-        <button data-montage-id="button2"></button>
+        <button data-montage-id="clearCompleted"></button>
         <ul data-montage-id="list">
-            <li data-montage-id="task1"></li>
+            <li data-montage-id="task"></li>
         </ul>
     </div>
 </body>
